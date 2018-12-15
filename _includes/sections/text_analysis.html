@@ -345,6 +345,14 @@ trolls, where other prefer words such as <i>good</i>, <i>lol</i>, <i>great</i>.
 <!-- <center> -->
 <!-- <img src="img/harold-0.jpg" onmouseover="this.width='500'; this.height='500'" onmouseout="this.width='200'; this.height='200'"> -->
 <!-- </center> -->
+The final part of this textual analysis consists of classifying the relevant tweets as <i>positive</i> or <i>negative</i>. Such
+a process can be performed via a <b>sentiment analysis</b>. </br>
+Once again, we have separated the analysis of the english and russian tweets. It must be noted that two
+parallel analysis were made. A quite naive one inspired by <a href=https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/tree/08a269765a6b185d5f3dd522c876043ba9628715  > Jeffrey Breen</a>
+and a more complex one based on a <a href=https://github.com/cjhutto/vaderSentiment > MIT tool</a>.</br>
+</br>
+For the <b>english</b> we focused ourselves on the tweets talking about respectively
+<i>Trump</i>, <i>Obama</i> and <i>Hillary</i>.
 <canvas id="myChart7" width="400px" height="200px" ></canvas>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
@@ -385,7 +393,13 @@ var myChart = new Chart(ctx, {
   }
 });
 </script>
+As we can see, the negative scores of Trump and Hillary are close enough while Obama has the lowest one.
+As for the positive scores, Trump is the big winner here against a Hillary that is quite behind.</br>
+</br>
 
+As for the Russian tweets, we've decided to dig deeper into the <i>Ukrainian</i> conflict illustrated by the
+<b>word</b> and <b>hashtags</b> analysis. As a comparison, we've also selected <i>Russia</i>, another
+highly debated subjects among the russian trolls.
 <canvas id="myChart8" width="400px" height="200px"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 <script>
@@ -425,3 +439,6 @@ var myChart = new Chart(ctx, {
   }
 });
 </script>
+Here the results are clearly visible, not only the negativity towards Ukrain is <ins>much</ins>
+more pronounced that towards Russia, but the opposite goes also for the positivity; the tweets
+are much more positive when talking about Ukrain.
