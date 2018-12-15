@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:4000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Analysing IRA tweets | ADA Project</title>
+<meta name="generator" content="Jekyll v3.8.5">
+<meta property="og:title" content="Analysing IRA tweets">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Analysing IRA tweets.">
+<meta property="og:description" content="Analysing IRA tweets.">
+<link rel="canonical" href="http://localhost:4000/">
+<meta property="og:url" content="http://localhost:4000/">
+<meta property="og:site_name" content="ADA Project">
+<script type="application/ld+json">
+{"url":"http://localhost:4000/","name":"ADA Project","description":"Analysing IRA tweets.","headline":"Analysing IRA tweets","@type":"WebSite","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="./Analysing IRA tweets _ ADA Project_files/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="ADA Project"><style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="http://localhost:4000/">ADA Project</a>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Analysing IRA tweets</h1>
+  </header>
+
+  <div class="post-content">
+    <script type="text/javascript" src="./Analysing IRA tweets _ ADA Project_files/Chart.js.download">
+
+</script>
+<h2> Introduction </h2>
+
+Among the enormous volume of tweets exchanged during the 2016 US presidential election campaign, millions were sent by alleged Russian troll accounts. Those accounts have been accused of manipulating the campaign and its outcome.
+
+Given how dramatic and dangerous the consequences of a country influencing the democratic process of another can be, we want to get a better insight on the methods and the real effects of the trolls.
+
+On one side, we will compare their activities with the evolution of popularity of the candidates along the campaign. We will also take a look at the major events of the election and determine if they were influenced by the trolls and vice-versa.
+
+On the other side, we will study the methods employed by the Russians to disrupt the presidential election. We will examine their vocabulary, the subjects they discuss as well as the media and people they refer to.<br>
+<br>
+
+Our analysis will mainly focus on trying to provide an answer to the following questions.<br>
+
+<ul>
+  <li>Is there a relation between the candidates popularities and the activities of the trolls? </li>
+  <li>Did the trolls influence the major events of the campaign? Is it the other way around? </li>
+  <li>Which subjects are discussed by the trolls?</li>
+  <li>Which media do they tend to talk about and link in their posts?</li>
+  <li>Do they tend to show direct support or hatred for specific people?</li>
+  <li>Did the strategy of the trolls change over time?</li>
+</ul>
+
+<h2> Dataset </h2>
+The main dataset we are going to use for this project is <a href="https://drive.google.com/file/d/1GBsVXYvPrGcYI-wR4mWGO39fly1TMqjO/view">the Russian and Iranian Troll</a> dataset from <a href="https://about.twitter.com/en_us/values/elections-integrity.html#data">Twitter</a>. It contains over 10 million tweets of accounts associated with IRA and Iranian trolls. It gives information about the account itself (Twitter handle, number of followers and following, account preferences...), and about the individual tweet (content, date and time of publication, type of post, number of retweets...).
+<br>
+<br>
+Regarding the popularities of the candidates, we have identified an important amount of data source on <a href="https://www.realclearpolitics.com/epolls/latest_polls/president/#">realclearpolitics.com</a>.
+<br>
+<br>
+We also took a look at the events after the campaign, with for example the evolution of the approval rate of Donald Trump proposed by <a href="https://projects.fivethirtyeight.com/trump-approval-ratings/?ex_cid=rrpromo">FiveFirtyEight</a>.
+<br>
+<br>
+Finally, for the timeline of the campaign and its major events, <a href="https://en.wikipedia.org/wiki/Timeline_of_the_2016_United_States_presidential_election">Wikipedia</a> has a lot of information.
+<br>
+<h2> Textual analysis </h2>
+
+Before doing further analysis let us first see what actually <b>contain</b> the Tweets.<br>
+That is, let us take a look at the
+<ul>
+  <li><strong>Languages :</strong> What are the languages used by the trolls ?</li>
+  <li><strong>Hashtags :</strong> Which hashtags do they use ? </li>
+  <li><strong>Words :</strong> Which are the favourite words of the trolls ?</li>
+  <li><strong>Sentiment analysis :</strong> What are their opinions on controversial subjects ?</li>
+  <li> What are the mains differences between Russian and English trolls ?</li>
+</ul>
+
+<h3> Languages </h3>
+
+<canvas id="myChart" width="825" height="550" style="display: block; height: 400px; width: 600px;"></canvas>
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+      responsive : false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+As we can see, the vast majority of trolls are <b>russian</b> and <b>english</b>. <br>
+The und stands for <i>'undefined'</i>. This can be explained by the facts that Tweets are written in a poor
+grammatical structure, making them difficult to understand by a computer.
+
+<h3> Hashtags </h3>
+<br>
+<!-- <h2> Section 1: Test </h2>
+
+On a fait un tas de recherches super intéressantes dans les data de
+<a href="https://about.twitter.com/en_us/values/elections-integrity.html#data">Twitter</a>.
+Et on a tracé des jolis graphes: </br>
+<center><img src="img/filtered_deg_graph.png" width=300px></center></br>
+
+Nos résultats sont reportés dans le tableau suivant:
+<center>
+<table style="width:60%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+</table>
+</center>
+</br> -->
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <!--<footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">ADA Project</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">ADA Project</li><li><a class="u-email" href="mailto:your-email@example.com">your-email@example.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jekyll"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jekyll</span></a></li><li><a href="https://www.twitter.com/jekyllrb"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">jekyllrb</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Analysing IRA tweets.</p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+-->
+
+  
+
+
+</body></html>
