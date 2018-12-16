@@ -318,7 +318,7 @@ Highlighted tweets above are quite expressive... and representative of the very 
      orange: 'rgb(255, 159, 64,1)',
      yellow: 'rgb(255, 205, 86,1)',
      green: 'rgb(3, 192, 60,1)',
-     blue: 'rgb(137, 207, 240,1)',
+     blue: 'rgb(2, 71, 254,1)',
      purple: 'rgb(153, 102, 255,1)',
      grey: 'rgb(231,233,237,0.4)',
      black : 'rgb(191,175,178, 0.4)',
@@ -400,9 +400,9 @@ Highlighted tweets above are quite expressive... and representative of the very 
    51022, 63505, 64778, 42151, 46701, 65091, 32984, 49430, 41470, 35382, 34830, 34103, 30757, 46356, 26204, 27121, 32339, 40937];
 
    // colors used as the point background colors as well as the fill colors
-   var fillColors = [chartColors.blue, chartColors.blue, chartColors.blue, chartColors.green, chartColors.green, chartColors.green, chartColors.green, chartColors.salmon, chartColors.salmon, chartColors.salmon,
-   chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
-   chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey
+   var fillColors = [chartColors.grey, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.green, chartColors.green, chartColors.green, chartColors.green, chartColors.salmon, chartColors.salmon,
+   chartColors.salmon, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+   chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey
   ];
    // get the canvas context and draw the chart
    var ctx = document.getElementById("canvas5").getContext("2d");
@@ -438,11 +438,7 @@ Highlighted tweets above are quite expressive... and representative of the very 
  As <a href= "https://en.wikipedia.org/wiki/War_in_Donbass"> wikipedia/war in Donbass </a> tells us, Ukrainia's armed conflict started around March-April 2014, then with some latency trollers began their job apparently.<br></br> Prior to those events a calm period had been observed, Ukrain's troubles seemed to trigger the trollers again.
  During the next time window we've spotted three major events (by this we mean events that were massively relayed by medias) for which IRA trollers did react. <br></br>
 
-<<<<<<< HEAD
-=======
  Among them we can notice the shootdown of the russian war aircraft :
-
->>>>>>> 0f1b84783ea3a23cb980ec711e6007e8fabdf1a3
  <ul>
    <li><strong> 1 : </strong>  Shootdown of a war aircraft (<a href="https://en.wikipedia.org/wiki/2014_Ukrainian_Air_Force_Il-76_shootdown" > wikipedia/AirForceIl76 </a>) (proved to having been processed from ground by russian units).
 <br>
@@ -461,10 +457,271 @@ Generally trolls spread fake news to defend the russian regime.
 Let's now focus on the period of time corresponding to the whole presidential campaign (+ some time before as a flourishing speculative period)
 <br>
 <center>
-    <img src="img/temp4.png" style="width: 400px; height: auto;">
-    <img src="img/temp4bis.png" style="width: 400px; height: auto;">
+  <div style="width:65%;">
+    <canvas id="canvas6"></canvas>
+  </div>
 </center>
 
+<script>
+  var chartColors = {
+    red: 'rgb(255, 99, 132,1)',
+    orange: 'rgb(255, 159, 64,1)',
+    yellow: 'rgb(255, 205, 86,1)',
+    green: 'rgb(3, 192, 60,1)',
+    blue: 'rgb(137, 207, 240,1)',
+    purple: 'rgb(153, 102, 255,1)',
+    grey: 'rgb(231,233,237,0.4)',
+    black : 'rgb(191,175,178, 0.4)',
+    blaune : 'rgb(255,223,0, 1)',
+    salmon : 'rgb(255,153,153)'
+  };
+  // decimal rounding algorithm
+  // see: https://plnkr.co/edit/uau8BlS1cqbvWPCHJeOy?p=preview
+  var roundNumber = function (num, scale) {
+    var number = Math.round(num * Math.pow(10, scale)) / Math.pow(10, scale);
+    if(num - number > 0) {
+      return (number + Math.floor(2 * Math.round((num - number) * Math.pow(10, (scale + 1))) / 10) / Math.pow(10, scale));
+    } else {
+      return number;
+    }
+  };
+
+  // save the original line element so we can still call it's
+  // draw method after we build the linear gradient
+  var origLineElement = Chart.elements.Line;
+
+  // define a new line draw method so that we can build a linear gradient
+  // based on the position of each point
+  Chart.elements.Line = Chart.Element.extend({
+    draw: function() {
+      var vm = this._view;
+      var backgroundColors = this._chart.controller.data.datasets[this._datasetIndex].backgroundColor;
+      var points = this._children;
+      var ctx = this._chart.ctx;
+      var minX = points[0]._model.x;
+      var maxX = points[points.length - 1]._model.x;
+      var linearGradient = ctx.createLinearGradient(minX, 0, maxX, 0);
+
+      // iterate over each point to build the gradient
+      points.forEach(function(point, i) {
+        // `addColorStop` expects a number between 0 and 1, so we
+        // have to normalize the x position of each point between 0 and 1
+        // and round to make sure the positioning isn't too percise
+        // (otherwise it won't line up with the point position)
+        var colorStopPosition = roundNumber((point._model.x - minX) / (maxX - minX), 2);
+
+        // special case for the first color stop
+        if (i === 0) {
+          linearGradient.addColorStop(0, backgroundColors[i]);
+        } else {
+          // only add a color stop if the color is different
+          if (backgroundColors[i] !== backgroundColors[i-1]) {
+            // add a color stop for the prev color and for the new color at the same location
+            // this gives a solid color gradient instead of a gradient that fades to the next color
+            linearGradient.addColorStop(colorStopPosition, backgroundColors[i - 1]);
+            linearGradient.addColorStop(colorStopPosition, backgroundColors[i]);
+          }
+        }
+      });
+
+      // save the linear gradient in background color property
+      // since this is what is used for ctx.fillStyle when the fill is rendered
+      vm.backgroundColor = linearGradient;
+
+      // now draw the lines (using the original draw method)
+      origLineElement.prototype.draw.apply(this);
+    }
+  });
+
+  // we have to overwrite the datasetElementType property in the line controller
+  // because it is set before we can extend the line element (this ensures that
+  // the line element used by the chart is the one that we extended above)
+  // the labels used by the chart
+  var labels = ['2015-01-06', '2015-01-13', '2015-01-20', '2015-01-27', '2015-02-03', '2015-02-10', '2015-02-17', '2015-02-24', '2015-03-03', '2015-03-10', '2015-03-17', '2015-03-24', '2015-03-31', '2015-04-07', '2015-04-14', '2015-04-21', '2015-04-28', '2015-05-05', '2015-05-12', '2015-05-19', '2015-05-26', '2015-06-02', '2015-06-09', '2015-06-16', '2015-06-23', '2015-06-30', '2015-07-07', '2015-07-14', '2015-07-21', '2015-07-28', '2015-08-04', '2015-08-11', '2015-08-18', '2015-08-25', '2015-09-01', '2015-09-08', '2015-09-15', '2015-09-22', '2015-09-29', '2015-10-06', '2015-10-13', '2015-10-20', '2015-10-27', '2015-11-03', '2015-11-10', '2015-11-17', '2015-11-24', '2015-12-01', '2015-12-08', '2015-12-15', '2015-12-22', '2015-12-29', '2016-01-05', '2016-01-12', '2016-01-19', '2016-01-26', '2016-02-02', '2016-02-09', '2016-02-16', '2016-02-23', '2016-03-01', '2016-03-08', '2016-03-15', '2016-03-22', '2016-03-29', '2016-04-05', '2016-04-12', '2016-04-19', '2016-04-26', '2016-05-03', '2016-05-10', '2016-05-17', '2016-05-24', '2016-05-31', '2016-06-07', '2016-06-14', '2016-06-21', '2016-06-28', '2016-07-05', '2016-07-12', '2016-07-19', '2016-07-26', '2016-08-02', '2016-08-09', '2016-08-16', '2016-08-23', '2016-08-30', '2016-09-06', '2016-09-13', '2016-09-20', '2016-09-27', '2016-10-04', '2016-10-11', '2016-10-18', '2016-10-25', '2016-11-01', '2016-11-06'];
+
+
+  // the line chart point data
+
+  var lineData = [47785, 60645, 71144, 42442, 35838, 38142, 34955, 36722, 23755, 22956, 53973, 72950, 32190, 24602, 28972, 24148, 28686, 27563, 26956, 20627, 21985, 19923, 22086, 32459, 28123, 30804, 36193, 49082, 33339, 35960, 28851, 33000, 26140, 22143, 20946, 20229, 20825, 21596, 21821, 21397, 20179, 20658, 19421, 19237, 19597, 22595, 23680, 22121, 20911, 19519, 20806, 16945, 15074, 16728, 17703, 17302, 18874, 21791, 20564, 21095, 20088, 15515, 19081, 22994, 16384, 16873, 17387, 18522, 17004, 16781, 15624, 18111, 15756, 14921, 14215, 15125, 15757, 13545, 12379, 11802, 10486, 11117, 11894, 12731, 13857, 13822, 13885, 15575, 13541, 14724, 17046, 16434, 15305, 13396, 13663, 13121, 5517];
+
+  // colors used as the point background colors as well as the fill colors
+  var fillColors = [chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.green, chartColors.green, chartColors.green, chartColors.green, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.salmon, chartColors.salmon, chartColors.salmon, chartColors.salmon, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.purple, chartColors.purple, chartColors.purple,
+  chartColors.purple, chartColors.purple, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey
+ ];
+  // get the canvas context and draw the chart
+  var ctx = document.getElementById("canvas6").getContext("2d");
+  var myLine = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "# of tweets",
+        borderColor: chartColors.black,
+        pointBackgroundColor: fillColors,
+        data: lineData,
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text:'Evolution with time of the number of tweets sent by troll accounts on period 4'
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            offsetGridLines: true
+          },
+        }]
+      }
+    }
+  });
+</script>
+<center>
+  <div style="width:65%;">
+    <canvas id="canvas7"></canvas>
+  </div>
+</center>
+
+<script>
+  var chartColors = {
+    red: 'rgb(255, 99, 132,1)',
+    orange: 'rgb(255, 159, 64,1)',
+    yellow: 'rgb(255, 205, 86,1)',
+    green: 'rgb(3, 192, 60,1)',
+    blue: 'rgb(137, 207, 240,1)',
+    purple: 'rgb(153, 102, 255,1)',
+    grey: 'rgb(231,233,237,0.4)',
+    black : 'rgb(191,175,178, 0.4)',
+    blaune : 'rgb(255,223,0, 1)',
+    salmon : 'rgb(255,153,153)'
+  };
+  // decimal rounding algorithm
+  // see: https://plnkr.co/edit/uau8BlS1cqbvWPCHJeOy?p=preview
+  var roundNumber = function (num, scale) {
+    var number = Math.round(num * Math.pow(10, scale)) / Math.pow(10, scale);
+    if(num - number > 0) {
+      return (number + Math.floor(2 * Math.round((num - number) * Math.pow(10, (scale + 1))) / 10) / Math.pow(10, scale));
+    } else {
+      return number;
+    }
+  };
+
+  // save the original line element so we can still call it's
+  // draw method after we build the linear gradient
+  var origLineElement = Chart.elements.Line;
+
+  // define a new line draw method so that we can build a linear gradient
+  // based on the position of each point
+  Chart.elements.Line = Chart.Element.extend({
+    draw: function() {
+      var vm = this._view;
+      var backgroundColors = this._chart.controller.data.datasets[this._datasetIndex].backgroundColor;
+      var points = this._children;
+      var ctx = this._chart.ctx;
+      var minX = points[0]._model.x;
+      var maxX = points[points.length - 1]._model.x;
+      var linearGradient = ctx.createLinearGradient(minX, 0, maxX, 0);
+
+      // iterate over each point to build the gradient
+      points.forEach(function(point, i) {
+        // `addColorStop` expects a number between 0 and 1, so we
+        // have to normalize the x position of each point between 0 and 1
+        // and round to make sure the positioning isn't too percise
+        // (otherwise it won't line up with the point position)
+        var colorStopPosition = roundNumber((point._model.x - minX) / (maxX - minX), 2);
+
+        // special case for the first color stop
+        if (i === 0) {
+          linearGradient.addColorStop(0, backgroundColors[i]);
+        } else {
+          // only add a color stop if the color is different
+          if (backgroundColors[i] !== backgroundColors[i-1]) {
+            // add a color stop for the prev color and for the new color at the same location
+            // this gives a solid color gradient instead of a gradient that fades to the next color
+            linearGradient.addColorStop(colorStopPosition, backgroundColors[i - 1]);
+            linearGradient.addColorStop(colorStopPosition, backgroundColors[i]);
+          }
+        }
+      });
+
+      // save the linear gradient in background color property
+      // since this is what is used for ctx.fillStyle when the fill is rendered
+      vm.backgroundColor = linearGradient;
+
+      // now draw the lines (using the original draw method)
+      origLineElement.prototype.draw.apply(this);
+    }
+  });
+
+  // we have to overwrite the datasetElementType property in the line controller
+  // because it is set before we can extend the line element (this ensures that
+  // the line element used by the chart is the one that we extended above)
+  // the labels used by the chart
+  var labels = ['2015-01-06', '2015-01-13', '2015-01-20', '2015-01-27', '2015-02-03', '2015-02-10', '2015-02-17', '2015-02-24', '2015-03-03', '2015-03-10', '2015-03-17', '2015-03-24', '2015-03-31', '2015-04-07', '2015-04-14', '2015-04-21', '2015-04-28', '2015-05-05', '2015-05-12', '2015-05-19', '2015-05-26', '2015-06-02', '2015-06-09', '2015-06-16', '2015-06-23', '2015-06-30', '2015-07-07', '2015-07-14', '2015-07-21', '2015-07-28', '2015-08-04', '2015-08-11', '2015-08-18', '2015-08-25', '2015-09-01', '2015-09-08', '2015-09-15', '2015-09-22', '2015-09-29', '2015-10-06', '2015-10-13', '2015-10-20', '2015-10-27', '2015-11-03', '2015-11-10', '2015-11-17', '2015-11-24', '2015-12-01', '2015-12-08', '2015-12-15', '2015-12-22', '2015-12-29', '2016-01-05', '2016-01-12', '2016-01-19', '2016-01-26', '2016-02-02', '2016-02-09', '2016-02-16', '2016-02-23', '2016-03-01', '2016-03-08', '2016-03-15', '2016-03-22', '2016-03-29', '2016-04-05', '2016-04-12', '2016-04-19', '2016-04-26', '2016-05-03', '2016-05-10', '2016-05-17', '2016-05-24', '2016-05-31', '2016-06-07', '2016-06-14', '2016-06-21', '2016-06-28', '2016-07-05', '2016-07-12', '2016-07-19', '2016-07-26', '2016-08-02', '2016-08-09', '2016-08-16', '2016-08-23', '2016-08-30', '2016-09-06', '2016-09-13', '2016-09-20', '2016-09-27', '2016-10-04', '2016-10-11', '2016-10-18', '2016-10-25', '2016-11-01', '2016-11-06'];
+
+
+  // the line chart point data
+
+  var lineData = [203, 262, 870, 764, 336, 302, 450, 378, 310, 347, 323, 380, 678, 360, 323, 390, 378,
+  475, 325, 300, 273, 272, 265, 1156, 727, 313, 498, 329, 332, 270, 289, 330, 228, 263, 262, 350, 535, 406,
+  240, 176, 271, 266, 334, 262, 225, 332, 228, 182, 245, 226, 348, 195, 120, 148, 198, 131, 202, 321, 275, 217,
+   273, 197, 233, 223, 152, 169, 165, 206, 189, 162, 114, 141, 196, 175, 99, 126
+  , 318, 127, 116, 89, 72, 71, 106, 95, 115, 116, 111, 141, 133, 412, 226, 144, 166, 144, 148, 140, 71];
+
+  // colors used as the point background colors as well as the fill colors
+  var fillColors = [chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.green, chartColors.green, chartColors.green, chartColors.green, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.salmon, chartColors.salmon, chartColors.salmon, chartColors.salmon, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.purple, chartColors.purple, chartColors.purple,
+  chartColors.purple, chartColors.purple, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey
+ ];
+  // get the canvas context and draw the chart
+  var ctx = document.getElementById("canvas7").getContext("2d");
+  var myLine = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "# of tweets",
+        borderColor: chartColors.black,
+        pointBackgroundColor: fillColors,
+        data: lineData,
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text:'Evolution with time of the number of direct political tweets sent by troll accounts'
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            offsetGridLines: true
+          },
+        }]
+      }
+    }
+  });
+</script>
 We can see that peaks of the second graph do not always match with the most prominent peaks within the overall frequency distribution of troll tweets (presence of other topics : like Crimean's conflict).
 Facts / events of the first importance are immediately visible through the second graph ; that is the graph obtained after filtering out non directly politically related tweets. This latter allows the reader
 to better see the moves of IRA with the time.<br></br>
