@@ -7,25 +7,151 @@ retweeted several times, which gives it more visibility, thus more attention...
 Retweets create retweets!
 It is a really convenient and fast way to propagate a message. <br>
 
-<h3> Retweeted </h3>
+<h3> Retweeted by the trolls </h3>
 
-Let us now take a look at the accounts (trolls or not) that were the most
+A quick glance at the messages written by the trolls that got the most retweets
+shows us that Russian is the main language for those. It has twice the count of
+English.
+
+<canvas id="myChart_retweeted_trolls_lang" width="900px" height="200px"></canvas>
+<script>
+var ctx = document.getElementById("myChart_retweeted_trolls_lang").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['RU', 'EN'],
+        datasets: [{
+        	label: "# Retweets",
+        	data: [2013563, 1083622],
+        	backgroundColor: ['red', 'blue']
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            fontSize: 18,
+            text: 'Retweets performed by trolls per language'
+        },
+        responsive : false,
+        scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        legend: {
+            display: false,
+        }
+    }
+});
+</script>
+
+Let us now take a look at the exposed accounts (trolls or not) that were the most
 retweeted by the trolls.
 Regarding trolls, we only take into account those that are not anonymized, as
 they are by definition more popular, and they can offer us more information.
-<center>
+
+
+<canvas id="myChart_retweeted_all" width="900px" height="400px"></canvas>
+<script>
+var ctx = document.getElementById("myChart_retweeted_all").getContext('2d');
+
+var gradient = ctx.createLinearGradient(0,0, 800,0);
+
+// Add three color stops
+gradient.addColorStop(0, 'green');
+gradient.addColorStop(.75, 'blue');
+gradient.addColorStop(1, 'purple');
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['rianru', 'GazetaRu', 'riafanru', 'RT_russian', 'vesti_news', '[DELETED]', 'Pravdiva_pravda', 'lentaruofficial', 'tass_agency', 'leprasorium', '[DELETED]', 'zubovnik', 'lifenews_ru', 'NovostiSPb', 'ru_rbc', 'champ_football', '[ANON]', 'izvestia_ru', 'MaxDementiev', 'ruopentwit'],
+        datasets: [{
+            label: "# retweets",
+	        data: [123830, 79030, 70395, 67521, 50560, 47279, 34712, 30997, 27712, 27433, 25092, 24909, 24196, 22366, 21039, 20580, 20289, 20253, 19753, 17841],
+            backgroundColor: gradient
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            fontSize: 18,
+            text: 'The 20 main handles retweeted by the trolls'
+        },
+        responsive : false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        legend: {
+            display: false,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
+            }
+        }
+    }
+});
+</script>
+
+
+<canvas id="myChart_retweeted_trolls" width="900px" height="400px"></canvas>
+<script>
+var ctx = document.getElementById("myChart_retweeted_trolls").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['riafanru', 'zubovnik', 'NovostiSPb', 'MaxDementiev', 'ruopentwit', 'sigermon', 'NovostiMsk', 'byDrBre', 'vestnikrus', 'ComradZampolit', 'NovostiEkb', 'NovostiKzn', 'NovostiNN', 'NovostiUf', 'inforeactor', 'nevnov_ru', 'NovostiOmska', 'NovostiRnD', 'NovostiChel', 'DonetskNovosti'],
+        datasets: [{
+        	label: "# Retweets",
+        	data: [70395, 24909, 22366, 19753, 17841, 16826, 16159, 15671, 15544, 14831, 14762, 13894, 13777, 13604, 12608, 11498, 11001, 9120, 8886, 8547],
+        	backgroundColor: ['red', 'red', 'blue', 'red', 'red', 'red', 'blue', 'red', 'red', 'red', 'blue', 'blue', 'blue', 'blue', 'red', 'red', 'blue', 'blue', 'blue', 'red']
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            fontSize: 18,
+            text: 'The 20 main trolls retweeted by the trolls'
+        },
+        responsive : false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        legend: {
+            display: false,
+            //fontColor: 'rgb(255, 99, 132)'
+
+        }
+    }
+});
+</script>
+
+<!-- <center>
     <img src="img/retweeted_all.png" width=400px>
     <img src="img/retweeted_trolls.png" width=400px>
-</center>
+</center> -->
 <br>
-We can see that the trolls present in our database do not represent the majority
+We can see that the exposed trolls present in our database do not represent the majority
 of the most retweeted handles, only 6 of them are in the top 20 (one of which
 is anonymized).
 Besides those, two accounts have been deleted and their handles are
 unretrievable.
-All the accounts in this top 20 appear to mainly write in Russian.
+All the accounts in this top 20 appear to mainly write in Russian (shown in red
+on the graph).
 This also holds true for the troll accounts: even though some of them picked
-English as account language, they all tweeted mainly in Russian.<br><br>
+English as account language (shown in blue on the graph), they all tweeted
+mainly in Russian.<br><br>
 
 Most of the most retweeted accounts are news agencies, several of those are
 owned by the Russian government.
@@ -73,14 +199,86 @@ Clearly, Russia decided to implement some serious changes in its media landscape
 around 2013-2014.
 This period corresponds to the explosion of the number of troll accounts. <br><br>
 
+<br><br>
+
+
 <h3> Retweeters </h3>
 
 Now that we have seen the most retweeted accounts, let us consider the main
-"retweeters".
+"retweeters", focusing again on the unanomyzed accounts.
 Surely, since Russian accounts are the most retweeted, Russian accounts should
-also be responsible for most of the retweets.
+also be responsible for most of the retweets?
 
-<center><img src="img/retweeter_trolls.png" width=400px></center><br>
+<canvas id="myChart_retweeters_trolls" width="900px" height="400px"></canvas>
+<script>
+var ctx = document.getElementById("myChart_retweeters_trolls").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['WorldOfHashtags', 'GiselleEvns', 'AgitPolk', 'gloed_up', 'ChrixMorgan', 'BleepThePolice', 'DanaGeezus', 'Booth_Prince', 'AndyHashtagger', 'ComradZampolit', 'LoraGreeen', 'TrayneshaCole', 'IlikeBIGbuttand', 'AmandaVGreen', 'DominicValent', 'NotRitaHart', 'KathieMrr', 'DickyIrwin', 'LavrovMuesli', 'Kotovamarys'],
+        datasets: [{
+        	label: "# Retweets",
+            legendText:"en",
+        	data: [26973, 16182, 15744, 13811, 13008, 10131, 8444, 6979, 6721, 6323, 5303, 4989, 4927, 4071, 3861, 3552, 3433, 3358, 3037, 2932],
+            backgroundColor: ['blue', 'blue', 'red', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'red', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'red', 'red']
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            fontSize: 18,
+            text: 'The 20 main retweeters (trolls)'
+        },
+        responsive : false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        legend: {
+            display: false,
+            labels: {
+                generateLabels: function(chart) {
+                    var labels = chart.data.labels;
+                    var dataset = chart.data.datasets[0];
+                    var red_set = false;
+                    var blue_set = false;
+                    var legend = labels.map(function(label, index) {
+                        var myText = (dataset.backgroundColor[index]=='blue') ? "en" : "ru";
+                        var hideIt = (dataset.backgroundColor[index]=='blue') ? blue_set : red_set;
+                        if (dataset.backgroundColor[index]=='blue') {
+                            blue_set = true
+                        } else {
+                            red_set = true
+                        }
+                        if (hideIt) {
+                            return {}
+                        }
+                        return {
+                            datasetIndex: 0,
+                            fillStyle: dataset.backgroundColor && dataset.backgroundColor[index],
+                            strokeStyle: dataset.borderColor && dataset.borderColor[index],
+                            lineWidth: dataset.borderWidth,
+                            text: myText,
+                            hidden: hideIt
+                        }
+                    });
+                    return legend;
+                },
+                filter: function(legendItem, data) {
+                    return false;
+                }
+                //fontColor: 'rgb(255, 99, 132)'
+            }
+        }
+    }
+});
+</script>
+
+<!-- <center><img src="img/retweeter_trolls.png" width=400px></center><br> -->
 
 Surprisingly, the vast majority of the main retweeters have their account language
 set to English, and actually tweet in English.
@@ -181,4 +379,59 @@ Following
     an article by The Washington Post</a>,
 it has been observed that several close relatives of Donald Trump have engaged
 with some of the accounts mentionned in this table, one of which being on the
-RU side.
+RU side.<br><br>
+
+
+<h3>Conclusions</h3>
+
+Regarding retweets, the IRA trolls are split in two main groups: Russian speaking
+and English speaking.<br>
+
+The Russian trolls tend to interact much more between each other, as we can see
+both on the bar charts and on the network graph.
+They also happen to sometimes use posts from American trolls, while the contrary
+does not appear to be true.
+Furthermore, they seem to focus their activity on a handful of very popular
+media, the majority of which is directly linked to the government.<br>
+
+English speaking trolls, on the other hand, seem to use retweets very actively
+and to diversify their sources.
+The graph below shows that they also are much more successful in spreading their
+messages through retweets.
+The posts written in English by the trolls got more than twice the number of
+retweets as the posts in Russian.
+
+<canvas id="myChart_retweeted_byall_lang" width="900px" height="200px"></canvas>
+<script>
+var ctx = document.getElementById("myChart_retweeted_byall_lang").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['EN', 'RU'],
+        datasets: [{
+        	label: "# Retweets",
+        	data: [21913266, 8530216],
+        	backgroundColor: ['blue', 'red']
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            fontSize: 18,
+            text: 'Retweets of troll written messages per language'
+        },
+        responsive : false,
+        scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        legend: {
+            display: false,
+        }
+    }
+});
+</script>
