@@ -1,0 +1,287 @@
+<h2> URLs </h2>
+
+Another way to understand better what the trolls are talking about is to analyze
+the urls present in their tweets.
+There are more than 4 millions of them, some tweets contain more than one.<br><br>
+
+<h3> Domains </h3>
+
+Let us first get an overview of the domains that are the most used, and compare
+them based on the languaged of the tweet in which they appear.
+
+<canvas id="myChart_domains_all" width="400px" height="200px"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+<script>
+  var ctx = document.getElementById('myChart_domains_all');
+
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+      labels: ['bit.ly', 'riafan.ru', 'twitter.com', 'ift.tt', 'goo.gl', 'dlvr.it', 'www.gazeta.ru', 'j.mp', 'russian.rt.com', 'youtu.be'],
+      datasets: [
+      {
+          label: "EN",
+          data: [109653, 1, 155148, 114741, 29862, 7413, 8, 1533, 0, 28293],
+          backgroundColor:'blue'
+      },
+      {
+        label: "RU",
+        data: [769083, 417754, 24408, 51692, 114791, 130694, 119564, 94125, 72015, 27618],
+        backgroundColor: 'red',
+      },
+      {
+        label: "Other",
+        data: [96292, 11039, 46295, 2461, 11641, 3580, 3460, 9887, 1054, 5224],
+        backgroundColor: 'green',
+      }
+    ]
+  },
+  options: {
+    title: {
+              display: true,
+              fontSize: 18,
+              text: 'The 10 most popular domains'
+          }
+  }
+});
+</script>
+
+Clearly, the popularity of the domains are mostly determined by Russian tweets.
+We can already see that some websites are used a lot by both communities.
+<a href="http://bit.ly">bit.ly</a>, <a href="http://ift.tt">ift.tt</a>,
+<a href="http://goo.gl">goo.gl</a> and <a href="http://j.mp">j.mp</a> are all
+url-shorteners ; <a href="http://ift.tt">ift.tt</a> also
+provides social media management services, like <a href="http://dlvr.it">dlvr.it</a>.
+<a href="http://twitter.com">twitter.com</a> and <a href="http://youtu.be">youtu.be</a>
+are of course very popular social media, and also propose shortened versions of their urls.
+Those short urls are very useful on Twitter, due to the character limit, which
+explains the popularity of those domains.
+<br>
+Splitting the domains between the two languages makes it easier to compare and
+analyze them.
+
+<canvas id="myChart_domains_en" width="900px" height="200px"></canvas>
+<script>
+var ctx = document.getElementById("myChart_domains_en").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['twitter.com', 'ift.tt', 'bit.ly', 'goo.gl', 'youtu.be', 'www.youtube.com', 'vine.co', 'zpr.io', 'www.LoseFatTips.pw', 'viid.me'],
+        datasets: [{
+        	label: "Count",
+        	data: [155148, 114741, 109653, 29862, 28293, 23286, 18911, 17166, 15485, 15201],
+            backgroundColor:'blue'
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            fontSize: 18,
+            text: 'The 10 most popular domains (EN)'
+        },
+        responsive : false,
+        scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        legend: {
+            display: false,
+        }
+    }
+});
+</script>
+
+The most popular domains present in tweets in English are rather unsurprising:
+Twitter, many url-shorteners and popular video media like Youtube and Vine.
+The only weird domain is <i>LoseFatTips.pw</i>.
+From what we can find on the
+<a href="http://web.archive.org/web/*/http://www.losefattips.pw:80/Feeling-good-after-my-spin-class-fitfam-fitness-workout.asp">
+Wayback Machine</a>, it seems to simply be a shady website which is now terminated,
+that used to redirect visitors to Asian websites. Its presence in the top 10 is
+probably due to <a href="https://russiatweets.com/author/FINDDIET">one account</a>
+spamming it constantly.
+
+<canvas id="myChart_domains_ru" width="900px" height="200px"></canvas>
+<script>
+var ctx = document.getElementById("myChart_domains_ru").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['bit.ly', 'riafan.ru', 'dlvr.it', 'www.gazeta.ru', 'goo.gl', 'j.mp', 'russian.rt.com', 'ift.tt', 'nevnov.ru', 'vesti.ru'],
+        datasets: [{
+        	label: "Count",
+        	data: [769083, 417754, 130694, 119564, 114791, 94125, 72015, 51692, 49560, 44963],
+            backgroundColor:'red'
+        }]
+    },
+    options: {
+        title: {
+            display: true,
+            fontSize: 18,
+            text: 'The 10 most popular domains (RU)'
+        },
+        responsive : false,
+        scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        legend: {
+            display: false,
+        }
+    }
+});
+</script>
+
+The popular domains found in Russian tweets are a bit more informative than the
+American ones. The usual url-shorteners and social media management tools are
+present, but they compete with several news websites.
+Several of those are recognizable: they correspond to some of the most retweeted
+Twitter handles: <a href="http://riafan.ru">riafan.ru</a>,
+<a href="http://gazeta.ru">gazeta.ru</a>,
+<a href="http://russian.rt.com">russian.rt.com</a>,
+<a href="http://nevnov.ru">nevnov.ru</a>, and
+<a href="http://vesti.ru">vesti.ru</a>.<br><br>
+
+<h3> URLs </h3>
+
+Going a bit deeper, we observe that some URLs are actually repeated a few hundred
+times.
+They are listed in the table below, according to the language of the associated
+tweets.
+Although several links are dead, some of them can be retrieved thanks to the
+<a href="http://web.archive.org">Wayback Machine</a>.
+Russian sites can be translated with an online tool such as
+<a href="https://www.lexilogos.com/english/translation_page.htm">Lexilogos</a>
+to get an idea of their content.<br><br>
+
+<table style="width:90%; border-collapse:collapse; border:none; rules:none;" align="center">
+<tr><td style="border:none; outline:none;"><table style="width:100%;">
+  <tr>
+      <th colspan="2"><center>RU</center></th>
+  </tr>
+  <tr>
+    <th><center>URL</center></th>
+    <th><center>Count</center></th>
+  </tr>
+  <tr>
+    <td> <a href="http://kiev-news.com/13876-detskaya-bolnica-v-donecke-popala-pod-obstrel.html">[REMOVED] Kiev-news.com</a> </td>
+    <td>2867</td>
+  </tr>
+  <tr>
+    <td> <a href="http://kievsmi.net/novosti/politics/47097-klimkin-peregovory-ukrainy-i-rossii-idut-neprosto.html">Negotiations between Ukraine and Russia are "not easy"</a> </td>
+    <td>2800</td>
+  </tr>
+  <tr>
+    <td> <a href="http://kiev-news.com/13872-v-kieve-shkolnikov-uchat-kak-vesti-sebya-pri-zaminirovanii.html">[REMOVED] Kiev-news.com</a> </td>
+    <td>2178</td>
+  </tr>
+  <tr>
+    <td> <a href="http://riafan.ru/119118-nigeriya-zaklyuchila-soglashenie-s-terroristami-boko-haram/">Nigeria has an agreement with terrorists "Boko Haram"</a> </td>
+    <td>1284</td>
+  </tr>
+  <tr>
+    <td> <a href="http://riafan.ru/119087-senegalu-udalos-pobedit-ebolu/">Senegal first on the planet defeated Ebola</a> </td>
+    <td>1170</td>
+  </tr>
+  <tr>
+    <td> <a href="http://ift.tt/eA8V8J">[REMOVED] IFTTT picture</a> </td>
+    <td>1095</td>
+  </tr>
+  <tr>
+    <td> <a href="http://riafan.ru/119064-v-donbasse-otkryityi-dopolnitelnyie-punktyi-opoznaniya-pogibshih-v-zone-ato/">In the Donbass, additional identification points for the dead in the ATO zone are open</a> </td>
+    <td>793</td>
+  </tr>
+  <tr>
+    <td> <a href="http://tvrain.ru/live/">tvrain.ru</a> </td>
+    <td>2867</td>
+  </tr>
+  <tr>
+    <td> <a href="http://riafan.ru/119019-v-tadzhikistane-razblokirovali-dostup-k-sotssetyam/">Tajikistan unblocked access to social networks</a> </td>
+    <td>782</td>
+  </tr>
+  <tr>
+    <td> <a href="http://katya-timofeeva.livejournal.com/81292.html">Who is to blame for the Donetsk air crash?</a> </td>
+    <td>779</td>
+  </tr>
+</table></td>
+<td style="border:none; outline:none;" valign="top"><table style="width:80%;">
+    <tr>
+        <th colspan="2"><center>EN</center></th>
+    </tr>
+    <tr>
+      <th><center>URL</center></th>
+      <th><center>Count</center></th>
+    </tr>
+    <tr>
+      <td> <a href="http://1063.mobi">1063 ATL Radio</a> </td>
+      <td>4357</td>
+    </tr>
+    <tr>
+      <td> <a href="http://USFREEDOMARMY.COM">U.S. Freedom Army</a> </td>
+      <td>3662</td>
+    </tr>
+    <tr>
+      <td> <a href="http://bit.ly/1D3LvAc">The Telegraph</a> </td>
+      <td>2369</td>
+    </tr>
+    <tr>
+      <td> <a href="http://Covfefe.bz">covfefe.bz (redirects to hedgeaccordingly.com)</a> </td>
+      <td>2035</td>
+    </tr>
+    <tr>
+      <td> <a href="https://twibble.io">twibble.io</a> </td>
+      <td>1719</td>
+    </tr>
+    <tr>
+      <td> <a href="http://www.theunder.us">theunder.us</a> </td>
+      <td>1255</td>
+    </tr>
+    <tr>
+      <td> <a href="http://payday-loans-24.com/">[REMOVED] Payday-Loans-24.com</a> </td>
+      <td>1203</td>
+    </tr>
+    <tr>
+      <td> <a href="http://rdo.to/WKMTDB">WKMT-DB Dagr8fm</a> </td>
+      <td>835</td>
+    </tr>
+    <tr>
+      <td> <a href="http://ireport.cnn.com/docs/DOC-1201697">[REMOVED] Crisis in nuclear power engineering of Ukraine may cause new Chernobyl</a> </td>
+      <td>799</td>
+    </tr>
+    <tr>
+      <td> <a href="http://StopBeefinRadio.com">StopBeefinRadio</a> </td>
+      <td>730</td>
+    </tr>
+</table></td></tr>
+</table>
+
+On the Russian side, the majority of the URLs lead to articles about foreign
+politics.
+Ukraine seems to be involved the most.
+This is in line with what we have already seen: Russian trolls tend to focus on
+(fake?) news, and they like to target Ukraine. <br><br>
+
+The English speaking side however is more diverse.
+There are some political (fake) news websites: <i>U.S. Freedom Army</i>, <i>covfefe.bz</i>,
+or even <i>The Telegraph</i>, a British newspaper which has a notable conservative
+stance and which has been
+<a href="https://en.wikipedia.org/wiki/The_Daily_Telegraph#Accusation_of_news_coverage_influence_by_advertisers">
+    accused of spreading pro-Russian propaganda</a>.
+The most intriguing part of this ranking is the presence of four webradios.
+They do not appear related, and only one of them offers some kind of news reports.
+Their purpose is unclear.<br><br>
+
+<h3>In brief</h3>
+The URLs are coherent with what we learned previously.
+Besides the usual popular websites, we can clearly distinguish the behavior of
+the trolls depending on their language.
+Russians focus on spreading news reports, while Americans tend to diversify their
+activities and to look more like casual users.
