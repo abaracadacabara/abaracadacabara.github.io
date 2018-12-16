@@ -1,0 +1,184 @@
+<h2> Retweets </h2>
+
+
+Retweets are one of the most important functionalities of Twitter.
+They often lead to a snowball effect: a post that receives attention gets
+retweeted several times, which gives it more visibility, thus more attention...
+Retweets create retweets!
+It is a really convenient and fast way to propagate a message. <br>
+
+<h3> Retweeted </h3>
+
+Let us now take a look at the accounts (trolls or not) that were the most
+retweeted by the trolls.
+Regarding trolls, we only take into account those that are not anonymized, as
+they are by definition more popular, and they can offer us more information.
+<center>
+    <img src="img/retweeted_all.png" width=400px>
+    <img src="img/retweeted_trolls.png" width=400px>
+</center>
+<br>
+We can see that the trolls present in our database do not represent the majority
+of the most retweeted handles, only 6 of them are in the top 20 (one of which
+is anonymized).
+Besides those, two accounts have been deleted and their handles are
+unretrievable.
+All the accounts in this top 20 appear to mainly write in Russian.
+This also holds true for the troll accounts: even though some of them picked
+English as account language, they all tweeted mainly in Russian.<br><br>
+
+Most of the most retweeted accounts are news agencies, several of those are
+owned by the Russian government.
+It is also interesting to note that almost all of them experienced major changes
+in 2013-2014. Here are the most notable ones:
+
+<ul>
+  <li><b> rianru </b>: Refers to <i>RIA Novosti</i> (Russian news & Information
+      Agency, "Novosti" means "news"), the previous official international news
+      agency of Russia. It has been replaced in 2014 by <i>Rossia Segodnia</i>,
+      but the name RIA is still used.
+  </li>
+  <li><b> GazetaRu </b>: <i>Gazeta.ru</i> is one of the most popular Russian
+      online newspapers.
+      Was part of a major companies fusion in 2013, under the name
+      <i>Afisha.Rambler.SUP</i>, later renamed <i>Rambler&co</i> in 2014.
+  </li>
+  <li><b> RT_russian </b>: Previously named <i>Russia Today</i>, now simply
+      known as <i>RT</i> (sheer coincidence?).
+      This news channel was created by RIA Novosti, and is globally considered
+      as a propaganda outlet. New centre in 2013, RT UK launched in 2014.
+  </li>
+  <li><b> vesti_news </b>: A news channel belonging to <i>VGTRK</i>, a
+      media company owned by the Russian government. Experienced a brand refresh
+      in 2014.
+  </li>
+  <li><b> lentaruofficial </b>: <i>Lenta.ru</i> is another popular online
+      newspaper which has been restructured in 2014 and has since be accused of
+      serving propaganda purposes.
+  </li>
+  <li><b> tass_agency </b>: Also a government owned news agency, of which the
+      name changed in 2014.
+  </li>
+  <li><b> lifenews_ru </b>: News website, pro-Kremlin, and allegedly spreading
+      fake news. TV channel launched 2013.
+  </li>
+  <li><b> riafanru </b>: This is the most retweeted troll account, with a
+      counter exceeding 70 000 (almost three times the counter of the second
+      most retweeted troll). The corresponding website (<i>Federal News Agency</i>)
+      seems to be focused on Ukraine, Syria, Russia, and fearmongering. It was
+      founded in 2014 and is still running in 2018. (Account active between 2015-2017.)
+  </li>
+</ul>
+Clearly, Russia decided to implement some serious changes in its media landscape
+around 2013-2014.
+This period corresponds to the explosion of the number of troll accounts. <br><br>
+
+<h3> Retweeters </h3>
+
+Now that we have seen the most retweeted accounts, let us consider the main
+"retweeters".
+Surely, since Russian accounts are the most retweeted, Russian accounts should
+also be responsible for most of the retweets.
+
+<center><img src="img/retweeter_trolls.png" width=400px></center><br>
+
+Surprisingly, the vast majority of the main retweeters have their account language
+set to English, and actually tweet in English.
+Several of those are classified as <i>hashtagers</i>, accounts that play games
+by replying to popular hashtags and using those to share their political stance.<br><br>
+
+<h3> Trolls retweet network </h3>
+
+It is now time to visualize the links between the troll accounts that are not
+anonymized.
+As above, accounts with English language settings are in blue, while Russians
+are in red.
+The size of a node is proportional to its degree.
+The color of a link indicates its importance: red links correspond to
+more interactions between two accounts.
+
+<center><img src="img/retweet_exposed_graph.png" width=600px></center><br>
+
+There are clearly two main clusters, divided by language.
+Again, some accounts with English settings are actually tweeting in Russian.
+All the accounts in the "Novosti" (recall that it means "news") cluster are in
+this position. <br>
+The two big groups are however connected!
+Those are the links between them:<br><br>
+
+<table style="width:30%; border-collapse:collapse; border:none; rules:none;" align="center">
+<tr><td style="border:none; outline:none;"><table>
+  <tr>
+    <th><center>EN</center></th>
+    <th><center>RU</center></th>
+  </tr>
+  <tr>
+    <td>WarfareWW</td>
+    <td>zubovnik</td>
+  </tr>
+  <tr>
+    <td>WarfareWW</td>
+    <td>coldwar20_ru</td>
+  </tr>
+  <tr>
+    <td>WarfareWW</td>
+    <td>ComradZampolit</td>
+  </tr>
+  <tr>
+    <td>WarfareWW</td>
+    <td>MatEvidenceRU</td>
+  </tr>
+  <tr>
+    <td>Pamela_Moore13</td>
+    <td>russilanrogov</td>
+  </tr>
+  <tr>
+    <td>TEN_GOP</td>
+    <td>russilanrogov</td>
+  </tr>
+</table></td>
+<td style="border:none; outline:none;" valign="top"><table>
+  <tr>
+    <th><center>EN</center></th>
+    <th><center>RU</center></th>
+  </tr>
+  <tr>
+    <td>MatEvidence</td>
+    <td>zubovnik</td>
+  </tr>
+  <tr>
+    <td>MatEvidence</td>
+    <td>coldwar20_ru</td>
+  </tr>
+  <tr>
+    <td>MatEvidence</td>
+    <td>ComradZampolit</td>
+  </tr>
+  <tr>
+    <td>MatEvidence</td>
+    <td>MatEvidenceRU</td>
+  </tr>
+  <tr>
+    <td>MatEvidence</td>
+    <td>NovostiDamask</td>
+  </tr>
+</table></td></tr>
+</table>
+
+Four English speaking and five Russian speaking accounts make the bridge
+between the clusters.
+Two of the American accounts are <i>right trolls</i>, while the two others (which
+show a lot of similarities) are classified as <i>newsfeed</i>.<br>
+<i>russilanrogov</i> is the only Russian connexion of <i>Pamela_Moore13</i> and
+<i>TEN_GOP</i>.
+It also seems to have right troll tendencies. Although it writes mostly in
+Russian, several of its tweets are in English or even in French, and are very
+focused on politics.<br>
+Interestingly, the relations always appear to go in the same direction: the
+Russian accounts retweet the English speaking ones, and not the other way around.<br>
+Following
+<a href="https://www.washingtonpost.com/news/politics/wp/2017/11/02/at-least-five-people-close-to-trump-engaged-with-russian-twitter-trolls-from-2015-to-2017/?utm_term=.5e7989478256">
+    an article by The Washington Post</a>,
+it has been observed that several close relatives of Donald Trump have engaged
+with some of the accounts mentionned in this table, one of which being on the
+RU side.
