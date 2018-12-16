@@ -1,6 +1,6 @@
 <h2 id="text"> Textual analysis </h2>
 
-Before doing further analysis let us first see what actually <b>contain</b> the Tweets.</br>
+Before doing further analysis let us first see what the Tweets actually <b>contain</b>.</br>
 That is, let us take a look at the <br></br>
 <ul>
   <li><strong>Languages :</strong> What are the languages used by the trolls ?</li>
@@ -62,14 +62,14 @@ var myChart = new Chart(ctx, {
 });
 </script>
 </center>
-As we can see, the vast majority of trolls are <b>russian</b> and <b>english</b>. </br>
+As we can see, the vast majority of trolls are <b>Russian</b> and <b>English</b>. </br>
 The und stands for <i>'undefined'</i>. This can be explained by the facts that Tweets are written in a poor
 grammatical structure, making them difficult to understand by a computer. </br>
-<i>Note</i> : for the rest of the analysis, we will use the english tweets and a translated subset of the russian ones.
-This subset corresponds to the 15.000 most retweeted ones.
+<i>Note</i> : for the rest of the analysis, we will use the English tweets and a translated subset of the russian ones.
+This subset corresponds to the 15.000 most retweeted ones.<br><br>
 <h3> Hashtags </h3>
 Another important aspect of the tweets are the hashtags. They represent a lot of information as they can tell about the subject of the tweet, the opinion of the tweeter, ... </br>
-Let us compare the most popular hashtags between <b>russian</b> and <b>english</b> ones.
+Let us compare the most popular hashtags between <b>Russian</b> and <b>English</b> ones.
 <center>
 <canvas id="myChart3" width="600px" height="400px"></canvas>
 <script>
@@ -132,7 +132,7 @@ var myChart = new Chart(ctx, {
       title : {
         fontSize: 18,
         display : true,
-        text : "Top 20 hashtags for english tweets",
+        text : "Top 20 hashtags for English tweets",
       },
       legend: {
         display: false
@@ -186,7 +186,7 @@ var myChart = new Chart(ctx, {
       title : {
         fontSize: 18,
         display : true,
-        text : "Top 6 hashtags for russian tweets",
+        text : "Top 6 hashtags for Russian tweets",
       },
       legend: {
         display: false
@@ -207,11 +207,11 @@ A quick google search about these tweets teaches us that
 <ul>
   <li><strong>ВСУ </strong> is the "Armed Forces of Ukraine"</li>
   <li><strong>ДНР </strong> is Donetsk People's Republic which is a proto-state of Ukraine </li>
-  <li><strong>ПозорWADA </strong> talks about the cancellation of the russian paralympic games</li>
+  <li><strong>ПозорWADA </strong> talks about the cancellation of the Russian paralympic games</li>
   <li><strong>АнгелыВсердце</strong>  refers to the events of the killed children of Donbass</li>
   <li> <strong>ЛНР</strong> means Luhansk People's Republic which is another proto-state of Ukraine</li>
 </ul>
-We can clearly see the difference of discussed topics between russian and english trolls. </br>
+We can clearly see the difference of discussed topics between Russian and English trolls. </br>
 Now is there a difference between <b>trolls</b> and <b>normal</b> users ? </br>
 By consulting webistes such as <a href = https://www.theroot.com/2014-s-most-popular-twitter-hashtags-1790868561> theroot, <a href=https://www.thewebbureau.com/blog/2017/august/twitters-most-popular-hashtags> WebBureau</a>, <a href=https://www.fin24.com/Tech/News/here-are-twitters-top-10-hashtags-for-2016-20161207> fin24</a> and the
 <a href=https://www.independent.co.uk/news/twitters-biggest-moments-of-2015-a6763036.html> independent</a>, we can draw the following tweet's usage
@@ -258,7 +258,7 @@ By consulting webistes such as <a href = https://www.theroot.com/2014-s-most-pop
 </center>
 Note that we have chosen the years 2014,2015 and 2016 here because they correspond to the peak of trolls' activity.
 One can already observe major differences between the trolls and normal people' discussions. Trolls tend to talk more about
-global subjects while others are highly influenced by local events.
+global subjects while others are highly influenced by local events.<br><br>
 
 <h3> Words </h3>
 Now that we have analysed the hashtags, let us focus on the words themselves. This allows us  to see what are the typical words used by trolls.
@@ -325,7 +325,7 @@ var myChart = new Chart(ctx, {
       title : {
         fontSize: 18,
         display : true,
-        text : "Top 20 most common words used by english trolls",
+        text : "Top 20 most common words used by English trolls",
       },
       legend: {
         display: false
@@ -343,7 +343,7 @@ var myChart = new Chart(ctx, {
 </script>
 </center>
 Without any surprise the most frequent word is <b>Trump</b>. </br>
-Now comparing those with the russian tweets
+Now comparing those with the Russian tweets
 <center>
 <canvas id="myChart5" width="600px" height="400px"></canvas>
 <script>
@@ -406,7 +406,7 @@ var myChart = new Chart(ctx, {
       title : {
         fontSize: 18,
         display : true,
-        text : "Top 20 most common words used by russian trolls",
+        text : "Top 20 most common words used by Russian trolls",
       },
       legend: {
         display: false
@@ -424,10 +424,10 @@ var myChart = new Chart(ctx, {
 </script>
 </center>
 Once again, we can clearly see the difference of discussed topics. Russian trolls are naturally
-more focus on local subjects such as Ukrain or the genocide of Donbass with words such as <i> children</i> or <i>memories</i>. </br>
+more focus on local subjects such as Ukraine or the genocide of Donbass with words such as <i> children</i> or <i>memories</i>. </br>
 Nevertheless the attentive reader may notice the presence of the word <i> american</i> at position 18. </br>
 </br>
-Are those words very different from those of a typical english tweeter user ?  </br>
+Are those words very different from those of a typical English tweeter user ?  </br>
 Long story short : <b>kinda</b>.
 <center>
 <canvas id="myChart6" width="600px" height="400px"></canvas>
@@ -509,21 +509,21 @@ var myChart = new Chart(ctx, {
 </script>
 </center>
 The biggest difference between is obviously the total absence of the word <b>Trump </b> for the normal users ! This indicates
-well how <b>Trump </b> is a particularly specific topic for the english trolls. </br>
-Furthemore, except for the word <i>love</i>, one could argue that the words used by the english trolls seem to be more negative that
+well how <b>Trump </b> is a particularly specific topic for the English trolls. </br>
+Furthemore, except for the word <i>love</i>, one could argue that the words used by the English trolls seem to be more negative that
 those used by the rest of the world. This is illustrated by words such as <i>kill</i>, <i>break</i>, <i>never</i> and <i>shoot</i> for the
-trolls, where other prefer words such as <i>good</i>, <i>lol</i>, <i>great</i>.
+trolls, where other prefer words such as <i>good</i>, <i>lol</i>, <i>great</i>.<br><br>
 <h3> Sentiment analysis </h3>
 <!-- <center> -->
 <!-- <img src="img/harold-0.jpg" onmouseover="this.width='500'; this.height='500'" onmouseout="this.width='200'; this.height='200'"> -->
 <!-- </center> -->
 The final part of this textual analysis consists of classifying the relevant tweets as <i>positive</i> or <i>negative</i>. Such
 a process can be performed via a <b>sentiment analysis</b>. </br>
-Once again, we have separated the analysis of the english and russian tweets. It must be noted that two
+Once again, we have separated the analysis of the English and Russian tweets. It must be noted that two
 parallel analysis were made. A quite naive one inspired by <a href=https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/tree/08a269765a6b185d5f3dd522c876043ba9628715  > Jeffrey Breen</a>
 and a more complex one based on a <a href=https://github.com/cjhutto/vaderSentiment > MIT tool</a>.</br>
 </br>
-For the <b>english</b> we focused ourselves on the tweets talking about respectively
+For the <b>English</b> we focused ourselves on the tweets talking about respectively
 <i>Trump</i>, <i>Obama</i> and <i>Hillary</i>.
 <center>
 <canvas id="myChart7" width="400px" height="100px" ></canvas>
@@ -574,7 +574,7 @@ As for the positive scores, Trump is the big winner here against a Hillary that 
 
 As for the Russian tweets, we've decided to dig deeper into the <i>Ukrainian</i> conflict illustrated by the
 <b>word</b> and <b>hashtags</b> analysis. As a comparison, we've also selected <i>Russia</i>, another
-highly debated subjects among the russian trolls.
+highly debated subjects among the Russian trolls.
 <center>
 <canvas id="myChart8" width="350px" height="100px"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
@@ -584,7 +584,7 @@ highly debated subjects among the russian trolls.
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Russia', 'Ukrain'],
+    labels: ['Russia', 'Ukraine'],
     datasets: [
       {
         label: 'Positive',
@@ -617,6 +617,6 @@ var myChart = new Chart(ctx, {
 });
 </script>
 </center>
-Here the results are clearly visible, not only the negativity towards Ukrain is <ins>much</ins>
+Here the results are clearly visible, not only the negativity towards Ukraine is <ins>much</ins>
 more pronounced that towards Russia, but the opposite goes also for the positivity; the tweets
-are much more positive when talking about Ukrain.
+are much more positive when talking about Ukraine.
