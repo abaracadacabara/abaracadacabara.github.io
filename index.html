@@ -6,6 +6,65 @@ layout: page
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js">
 
 </script>
+
+<style type="text/css">
+html {
+  scroll-behavior: smooth;
+}
+.toc {
+  top: 80px;
+  width: 150px;
+  position: fixed;
+  right: 5px;
+  border-radius: 5px;
+  border: 1px solid rgb(75, 75, 75);
+  background-color: #f5f5f5;
+}
+
+.nav-link {
+  text-align: center;
+  color: black;
+  width: 130px;
+  padding: 10px 10px;
+}
+.nav-link:hover {
+  color: black;
+  background-color: #ececec;
+}
+
+.nav-link-text {
+  color: black;
+}
+.nav-link-text:visited {
+  color: black;
+}
+.nav-link-text:hover {
+  text-decoration: none;
+}
+
+.toc h4 {
+  text-align: center;
+}
+</style>
+
+<div class="toc">
+  <h4>Menu</h4>
+  <div class="nav-link">
+    <a class="nav-link-text" href="#introduction">Introduction</a>
+  </div>
+  <div class="nav-link">
+    <a class="nav-link-text" href="#quantitative1">Quick preview</a>
+  </div>
+  <div class="nav-link">
+    <a class="nav-link-text" href="#text">Textual analysis</a>
+  </div>
+  <div class="nav-link">
+    <a class="nav-link-text" href="#quantitative2">Temporal analysis</a>
+  </div>
+  <div class="nav-link">
+    <a class="nav-link-text" href="#retweets">Retweets and URL</a>
+  </div>
+</div>
 {% include sections/introduction.html %}</br>
 {% include sections/quantitative1.html %}</br>
 {% include sections/text_analysis.html %}</br>

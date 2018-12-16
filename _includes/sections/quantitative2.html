@@ -1,5 +1,5 @@
 <br></br>
-<h2> Detailed Temporal Analysis </h2>
+<h2 id="quantitative2">> Detailed Temporal Analysis </h2>
 
 <h3> Time Window 1 (Vladimir Putin and US 2012 Elections)</h3>
 Small interactions with US 2012 elections and easy to spot intra-Russia tweets about the elections.
@@ -715,7 +715,7 @@ Let's now focus on the period of time corresponding to the whole presidential ca
       title: {
         fontSize: 18,
         display: true,
-        text:'Evolution with time of the number of direct political tweets sent by troll accounts'
+        text:'Evolution with time of the number of direct political tweets sent by troll accounts - period 4'
       },
       legend: {
         display: false,
@@ -827,24 +827,6 @@ Let's review the evolution of the <i> favorability deltas </i> (using more advan
             fontSize: 18,
 						display: true,
 						text: 'Evolution with time of the "sentiment delta" of so called "sentimental" tweets'
-					},
-					scales: {
-						yAxes: [{
-							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-							display: true,
-							position: 'left',
-							id: 'y-axis-1',
-						}, {
-							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-							display: true,
-							position: 'right',
-							id: 'y-axis-2',
-
-							// grid line settings
-							gridLines: {
-								drawOnChartArea: false, // only want the grid lines for one axis to show up
-							},
-						}],
 					}
 				}
 			});
@@ -924,7 +906,141 @@ For instance, the following tweets are highly against democrats and more precise
 <h3> Time Window 5 (Ukraine's war & Presidential Instability)</h3>
 In this time window we did observe two main events that pushed massively troll accounts to their keyboards
 
-<!-- ici -->
+<center>
+  <div style="width:65%;">
+    <canvas id="canvas9"></canvas>
+  </div>
+</center>
+
+<script>
+  var chartColors = {
+    red: 'rgb(255, 99, 132,1)',
+    orange: 'rgb(255, 159, 64,1)',
+    yellow: 'rgb(255, 205, 86,1)',
+    green: 'rgb(3, 192, 60,1)',
+    blue: 'rgb(137, 207, 240,1)',
+    purple: 'rgb(153, 102, 255,1)',
+    grey: 'rgb(231,233,237,0.4)',
+    black : 'rgb(191,175,178, 0.4)',
+    blaune : 'rgb(255,223,0, 1)',
+    salmon : 'rgb(255,153,153)'
+  };
+  // decimal rounding algorithm
+  // see: https://plnkr.co/edit/uau8BlS1cqbvWPCHJeOy?p=preview
+  var roundNumber = function (num, scale) {
+    var number = Math.round(num * Math.pow(10, scale)) / Math.pow(10, scale);
+    if(num - number > 0) {
+      return (number + Math.floor(2 * Math.round((num - number) * Math.pow(10, (scale + 1))) / 10) / Math.pow(10, scale));
+    } else {
+      return number;
+    }
+  };
+
+  // save the original line element so we can still call it's
+  // draw method after we build the linear gradient
+  var origLineElement = Chart.elements.Line;
+
+  // define a new line draw method so that we can build a linear gradient
+  // based on the position of each point
+  Chart.elements.Line = Chart.Element.extend({
+    draw: function() {
+      var vm = this._view;
+      var backgroundColors = this._chart.controller.data.datasets[this._datasetIndex].backgroundColor;
+      var points = this._children;
+      var ctx = this._chart.ctx;
+      var minX = points[0]._model.x;
+      var maxX = points[points.length - 1]._model.x;
+      var linearGradient = ctx.createLinearGradient(minX, 0, maxX, 0);
+
+      // iterate over each point to build the gradient
+      points.forEach(function(point, i) {
+        // `addColorStop` expects a number between 0 and 1, so we
+        // have to normalize the x position of each point between 0 and 1
+        // and round to make sure the positioning isn't too percise
+        // (otherwise it won't line up with the point position)
+        var colorStopPosition = roundNumber((point._model.x - minX) / (maxX - minX), 2);
+
+        // special case for the first color stop
+        if (i === 0) {
+          linearGradient.addColorStop(0, backgroundColors[i]);
+        } else {
+          // only add a color stop if the color is different
+          if (backgroundColors[i] !== backgroundColors[i-1]) {
+            // add a color stop for the prev color and for the new color at the same location
+            // this gives a solid color gradient instead of a gradient that fades to the next color
+            linearGradient.addColorStop(colorStopPosition, backgroundColors[i - 1]);
+            linearGradient.addColorStop(colorStopPosition, backgroundColors[i]);
+          }
+        }
+      });
+
+      // save the linear gradient in background color property
+      // since this is what is used for ctx.fillStyle when the fill is rendered
+      vm.backgroundColor = linearGradient;
+
+      // now draw the lines (using the original draw method)
+      origLineElement.prototype.draw.apply(this);
+    }
+  });
+
+  // we have to overwrite the datasetElementType property in the line controller
+  // because it is set before we can extend the line element (this ensures that
+  // the line element used by the chart is the one that we extended above)
+  // the labels used by the chart
+  var labels = ['2016-11-06', '2016-11-13', '2016-11-20', '2016-11-27', '2016-12-04', '2016-12-11', '2016-12-18', '2016-12-25', '2017-01-01', '2017-01-08',
+  '2017-01-15', '2017-01-22', '2017-01-29', '2017-02-05', '2017-02-12', '2017-02-19', '2017-02-26', '2017-03-05', '2017-03-12',
+  '2017-03-19', '2017-03-26', '2017-04-02', '2017-04-09', '2017-04-16', '2017-04-23', '2017-04-30', '2017-05-07', '2017-05-14', '2017-05-21',
+  '2017-05-28', '2017-06-04', '2017-06-11', '2017-06-18', '2017-06-25', '2017-07-02', '2017-07-09', '2017-07-16', '2017-07-23', '2017-07-30',
+  '2017-08-06', '2017-08-13', '2017-08-20', '2017-08-27', '2017-09-03', '2017-09-10', '2017-09-17', '2017-09-24', '2017-10-01', '2017-10-08',
+   '2017-10-15', '2017-10-22', '2017-10-29', '2017-10-30'];
+
+
+  // the line chart point data
+
+  var lineData = [106, 496, 119, 247, 205, 1717, 3126, 2378, 2327, 1924, 1455, 782, 758, 667, 734, 742, 680, 721, 651, 178, 161,
+   203, 174, 132, 235, 138, 158, 138, 157, 153, 148, 133, 137, 87, 87, 109, 133, 88, 185, 1494, 2029, 1741, 77, 77, 193, 130, 102,
+    69, 50, 33, 39, 5, 1];
+
+  // colors used as the point background colors as well as the fill colors
+  var fillColors = [chartColors.grey, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue,
+  chartColors.blue, chartColors.blue, chartColors.blue, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.green, chartColors.green,
+  chartColors.green, chartColors.green, chartColors.green, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey,
+  chartColors.grey, chartColors.grey, chartColors.grey
+ ];
+  // get the canvas context and draw the chart
+  var ctx = document.getElementById("canvas9").getContext("2d");
+  var myLine = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "# of tweets",
+        borderColor: chartColors.black,
+        pointBackgroundColor: fillColors,
+        data: lineData,
+      }]
+    },
+    options: {
+      title: {
+        fontSize: 18,
+        display: true,
+        text:'Evolution with time of the number of direct political tweets sent by troll accounts - period 5'
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            offsetGridLines: true
+          },
+        }]
+      }
+    }
+  });
+</script>
 
 As previously highlighted a peak of activity is worth mentioning 1-2 months before final US 2012 presidentials (<b><span style="color: lightblue">light blue</span></b>)
 Furthermore one can notice a serie of saddle points/plateau (<b><span style="color: forestgreen">green</span></b>) around May 2012 : actually looking at the most retweeted tweets for period 1 it comes to light that <a href="https://en.wikipedia.org/wiki/Vladimir_Putin"> wikipedia/Vladimir Putin </a> has been put forward by troll accounts at that moment.
