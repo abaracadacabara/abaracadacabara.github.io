@@ -62,14 +62,14 @@ var myChart = new Chart(ctx, {
 });
 </script>
 </center>
-As we can see, the vast majority of trolls are <b>russian</b> and <b>english</b>. </br>
+As we can see, the vast majority of trolls are <b>Russian</b> and <b>English</b>. </br>
 The und stands for <i>'undefined'</i>. This can be explained by the facts that Tweets are written in a poor
-grammatical structure, making them difficult to understand by a computer. </br>
+grammatical structure, making them difficult to be understood by a computer. </br>
 <i>Note</i> : for the rest of the analysis, we will use the english tweets and a translated subset of the russian ones.
 This subset corresponds to the 15.000 most retweeted ones.
 <h3> Hashtags </h3>
 Another important aspect of the tweets are the hashtags. They represent a lot of information as they can tell about the subject of the tweet, the opinion of the tweeter, ... </br>
-Let us compare the most popular hashtags between <b>russian</b> and <b>english</b> ones.
+Let us compare the most popular hashtags between <b>Russian</b> and <b>English</b> ones.
 <center>
 <canvas id="myChart3" width="600px" height="400px"></canvas>
 <script>
@@ -262,7 +262,7 @@ global subjects while others are highly influenced by local events.
 
 <h3> Words </h3>
 Now that we have analysed the hashtags, let us focus on the words themselves. This allows us  to see what are the typical words used by trolls.
-Note that in order to stay the more coherent possible we stemmed the words and did not include the stopwords in the list.
+Note that in order to stay the more coherent possible we've stemmed the words and did not include the stopwords in the list.
 <center>
 <canvas id="myChart4" width="600px" height="400px"></canvas>
 <script>
@@ -424,7 +424,7 @@ var myChart = new Chart(ctx, {
 </script>
 </center>
 Once again, we can clearly see the difference of discussed topics. Russian trolls are naturally
-more focus on local subjects such as Ukrain or the genocide of Donbass with words such as <i> children</i> or <i>memories</i>. </br>
+more focus on local subjects such as Ukraine or the genocide of Donbass with words such as <i> children</i> or <i>memories</i>. </br>
 Nevertheless the attentive reader may notice the presence of the word <i> american</i> at position 18. </br>
 </br>
 Are those words very different from those of a typical english tweeter user ?  </br>
@@ -523,7 +523,7 @@ Once again, we have separated the analysis of the english and russian tweets. It
 parallel analysis were made. A quite naive one inspired by <a href=https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/tree/08a269765a6b185d5f3dd522c876043ba9628715  > Jeffrey Breen</a>
 and a more complex one based on a <a href=https://github.com/cjhutto/vaderSentiment > MIT tool</a>.</br>
 </br>
-For the <b>english</b> we focused ourselves on the tweets talking about respectively
+For the <b>english</b> tweets, we focused ourselves on the tweets talking about respectively
 <i>Trump</i>, <i>Obama</i> and <i>Hillary</i>.
 <center>
 <canvas id="myChart7" width="400px" height="100px" ></canvas>
@@ -573,7 +573,7 @@ As for the positive scores, Trump is the big winner here against a Hillary that 
 </br>
 
 As for the Russian tweets, we've decided to dig deeper into the <i>Ukrainian</i> conflict illustrated by the
-<b>word</b> and <b>hashtags</b> analysis. As a comparison, we've also selected <i>Russia</i>, another
+<b>words</b> and <b>hashtags</b> analysis. As a comparison, we've also selected <i>Russia</i>, another
 highly debated subjects among the russian trolls.
 <center>
 <canvas id="myChart8" width="350px" height="100px"></canvas>
@@ -584,7 +584,7 @@ highly debated subjects among the russian trolls.
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Russia', 'Ukrain'],
+    labels: ['Russia', 'Ukraine'],
     datasets: [
       {
         label: 'Positive',
@@ -617,6 +617,6 @@ var myChart = new Chart(ctx, {
 });
 </script>
 </center>
-Here the results are clearly visible, not only the negativity towards Ukrain is <ins>much</ins>
-more pronounced that towards Russia, but the opposite goes also for the positivity; the tweets
-are much more positive when talking about Ukrain.
+Here the results are clearly visible, not only the negativity towards Ukraine is <ins>much</ins>
+more pronounced than towards Russia, but the opposite goes also for the positivity; the tweets
+are much more positive when talking about Ukraine.
