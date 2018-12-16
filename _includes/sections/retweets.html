@@ -13,7 +13,9 @@ A quick glance at the messages written by the trolls that got the most retweets
 shows us that Russian is the main language for those. It has twice the count of
 English.
 
-<canvas id="myChart_retweeted_trolls_lang" width="900px" height="200px"></canvas>
+<center>
+<canvas id="myChart_retweeted_trolls_lang" width="750px" height="200px"></canvas>
+</center>
 <script>
 var ctx = document.getElementById("myChart_retweeted_trolls_lang").getContext('2d');
 
@@ -53,8 +55,9 @@ retweeted by the trolls.
 Regarding trolls, we only take into account those that are not anonymized, as
 they are by definition more popular, and they can offer us more information.
 
-
+<center>
 <canvas id="myChart_retweeted_all" width="900px" height="400px"></canvas>
+</center>
 <script>
 var ctx = document.getElementById("myChart_retweeted_all").getContext('2d');
 
@@ -99,8 +102,9 @@ var myChart = new Chart(ctx, {
 });
 </script>
 
-
+<center>
 <canvas id="myChart_retweeted_trolls" width="900px" height="400px"></canvas>
+</center>
 <script>
 var ctx = document.getElementById("myChart_retweeted_trolls").getContext('2d');
 
@@ -208,8 +212,9 @@ Now that we have seen the most retweeted accounts, let us consider the main
 "retweeters", focusing again on the unanomyzed accounts.
 Surely, since Russian accounts are the most retweeted, Russian accounts should
 also be responsible for most of the retweets?
-
+<center>
 <canvas id="myChart_retweeters_trolls" width="900px" height="400px"></canvas>
+</center>
 <script>
 var ctx = document.getElementById("myChart_retweeters_trolls").getContext('2d');
 
@@ -303,8 +308,9 @@ All the accounts in the "Novosti" (recall that it means "news") cluster are in
 this position. <br>
 The two big groups are however connected!
 Those are the links between them:<br><br>
-
+<center>
 <table style="width:30%; border-collapse:collapse; border:none; rules:none;" align="center">
+</center>
 <tr><td style="border:none; outline:none;"><table>
   <tr>
     <th><center>EN</center></th>
@@ -401,7 +407,9 @@ messages through retweets.
 The posts written in English by the trolls got more than twice the number of
 retweets as the posts in Russian.
 
-<canvas id="myChart_retweeted_byall_lang" width="900px" height="200px"></canvas>
+<center>
+<canvas id="myChart_retweeted_byall_lang" width="750px" height="200px"></canvas>
+</center>
 <script>
 var ctx = document.getElementById("myChart_retweeted_byall_lang").getContext('2d');
 

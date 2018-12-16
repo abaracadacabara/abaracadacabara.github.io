@@ -11,7 +11,7 @@ That is, let us take a look at the <br></br>
 </ul>
 
 <h3> Languages </h3>
-
+<center>
 <canvas id="myChart" width="600px" height="400px"></canvas>
 <script>
 var ctx = document.getElementById("myChart").getContext('2d');
@@ -60,6 +60,7 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+</center>
 As we can see, the vast majority of trolls are <b>russian</b> and <b>english</b>. </br>
 The und stands for <i>'undefined'</i>. This can be explained by the facts that Tweets are written in a poor
 grammatical structure, making them difficult to understand by a computer. </br>
@@ -68,6 +69,7 @@ This subset corresponds to the 15.000 most retweeted ones.
 <h3> Hashtags </h3>
 Another important aspect of the tweets are the hashtags. They represent a lot of information as they can tell about the subject of the tweet, the opinion of the tweeter, ... </br>
 Let us compare the most popular hashtags between <b>russian</b> and <b>english</b> ones.
+<center>
 <canvas id="myChart3" width="600px" height="400px"></canvas>
 <script>
 var ctx = document.getElementById("myChart3").getContext('2d');
@@ -144,7 +146,9 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+</center>
 As we can see the most used hashtags are those about news, sports and politics. This makes sense as these 3 topics are common subject of dicsussion between all tweeter's users, trolls included.
+<center>
 <canvas id="myChart2" width="600px" height="400px"></canvas>
 <script>
 var ctx = document.getElementById("myChart2").getContext('2d');
@@ -195,6 +199,7 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+</center>
 A quick google search about these tweets teaches us that
 <ul>
   <li><strong>ВСУ </strong> is the "Armed Forces of Ukraine"</li>
@@ -255,6 +260,7 @@ global subjects while others are highly influenced by local events.
 <h3> Words </h3>
 Now that we have analysed the hashtags, let us focus on the words themselves. This allows us  to see what are the typical words used by trolls.
 Note that in order to stay the more coherent possible we stemmed the words and did not include the stopwords in the list.
+<center>
 <canvas id="myChart4" width="600px" height="400px"></canvas>
 <script>
 var ctx = document.getElementById("myChart4").getContext('2d');
@@ -331,8 +337,10 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+</center>
 Without any surprise the most frequent word is <b>Trump</b>. </br>
 Now comparing those with the russian tweets
+<center>
 <canvas id="myChart5" width="600px" height="400px"></canvas>
 <script>
 var ctx = document.getElementById("myChart5").getContext('2d');
@@ -409,12 +417,14 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+</center>
 Once again, we can clearly see the difference of discussed topics. Russian trolls are naturally
 more focus on local subjects such as Ukrain or the genocide of Donbass with words such as <i> children</i> or <i>memories</i>. </br>
 Nevertheless the attentive reader may notice the presence of the word <i> american</i> at position 18. </br>
 </br>
 Are those words very different from those of a typical english tweeter user ?  </br>
 Long story short : <b>kinda</b>.
+<center>
 <canvas id="myChart6" width="600px" height="400px"></canvas>
 <script>
 var ctx = document.getElementById("myChart6").getContext('2d');
@@ -491,6 +501,7 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+</center>
 The biggest difference between is obviously the total absence of the word <b>Trump </b> for the normal users ! This indicates
 well how <b>Trump </b> is a particularly specific topic for the english trolls. </br>
 Furthemore, except for the word <i>love</i>, one could argue that the words used by the english trolls seem to be more negative that
@@ -508,7 +519,8 @@ and a more complex one based on a <a href=https://github.com/cjhutto/vaderSentim
 </br>
 For the <b>english</b> we focused ourselves on the tweets talking about respectively
 <i>Trump</i>, <i>Obama</i> and <i>Hillary</i>.
-<canvas id="myChart7" width="400px" height="200px" ></canvas>
+<center>
+<canvas id="myChart7" width="400px" height="100px" ></canvas>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 <script>
@@ -548,6 +560,7 @@ var myChart = new Chart(ctx, {
   }
 });
 </script>
+</center>
 As we can see, the negative scores of Trump and Hillary are close enough while Obama has the lowest one.
 As for the positive scores, Trump is the big winner here against a Hillary that is quite behind.</br>
 </br>
@@ -555,7 +568,8 @@ As for the positive scores, Trump is the big winner here against a Hillary that 
 As for the Russian tweets, we've decided to dig deeper into the <i>Ukrainian</i> conflict illustrated by the
 <b>word</b> and <b>hashtags</b> analysis. As a comparison, we've also selected <i>Russia</i>, another
 highly debated subjects among the russian trolls.
-<canvas id="myChart8" width="400px" height="200px"></canvas>
+<center>
+<canvas id="myChart8" width="350px" height="100px"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 <script>
   var ctx = document.getElementById('myChart8');
@@ -594,6 +608,7 @@ var myChart = new Chart(ctx, {
   }
 });
 </script>
+</center>
 Here the results are clearly visible, not only the negativity towards Ukrain is <ins>much</ins>
 more pronounced that towards Russia, but the opposite goes also for the positivity; the tweets
 are much more positive when talking about Ukrain.
