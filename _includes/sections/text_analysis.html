@@ -18,18 +18,17 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["ru", "en", "und", "de", "uk", "bg", "ar"],
+        labels: ["ru", "en", "und", "de", "uk", "bg"],
         datasets: [{
             label: '# of Tweets',
-            data: [2711826,2109062,381145,83362,47910,34235,18647],
+            data: [2711826,2109062,381145,83362,47910,34235],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(122, 14, 13, 0.2)',
-                'rgba(255, 54, 78, 0.2)'
+                'rgba(122, 14, 13, 0.2)'
             ],
             borderColor: [
             'rgba(255, 99, 132, 1)',
@@ -37,13 +36,19 @@ var myChart = new Chart(ctx, {
             'rgba(255, 206, 86, 1)',
             'rgba(75, 192, 192, 1)',
             'rgba(153, 102, 255, 1)',
-            'rgba(122, 14, 13, 1)',
-            'rgba(255, 54, 78, 1)'
+            'rgba(122, 14, 13, 1)'
             ],
             borderWidth: 1
         }]
     },
     options: {
+      title : {
+        display : true,
+        text : "The 6 most common language for trolls' tweets",
+      },
+      legend: {
+        display: false
+    },
       responsive : false,
         scales: {
             yAxes: [{
@@ -69,10 +74,10 @@ var ctx = document.getElementById("myChart3").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["ru", "en", "und", "de", "uk", "bg", "ar", "es", "fr", "sr", "in", "tl", "et", "ht","da", "tr", "ro", "it", "nl", "pt"],
+        labels: ["#news", "#sports", " #politics", "#local", "#world", "#business", " #Chicago", "#health", "#love", "#TopNews", "#breaking", "#Texas", "#Fukushima2015", "#NewYork","#Foke", "#true", "#showbiz", "#tech", "#FukushimaAgain", "#BlackLivesMatter"],
         datasets: [{
             label: '# of Tweets',
-            data: [2711826,2109062,381145,83362,47910,34235,18647,7454,6584,5233,4862,3349,2913,2374,2259,2229,2144,1831,1821,1519],
+            data: [228507, 92168, 72735, 49897, 28000, 25334, 21515, 20619, 16511, 15641, 15309, 11924, 11702, 11168, 11090, 10926, 10138, 10130, 9250, 9250],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -96,31 +101,38 @@ var myChart = new Chart(ctx, {
                 'rgba(142, 160, 45, 0.2)'
             ],
             borderColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(122, 14, 13, 0.2)',
-            'rgba(255, 54, 78, 0.2)',
-            'rgba(47, 165, 64, 0.2)',
-            'rgba(250, 72, 4, 0.2)',
-            'rgba(28, 159, 167, 0.2)',
-            'rgba(19, 222, 111, 0.2)',
-            'rgba(145, 209, 255, 0.2)',
-            'rgba(230, 150, 64, 0.2)',
-            'rgba(185, 20, 90, 0.2)',
-            'rgba(96, 123, 98, 0.2)',
-            'rgba(25, 23, 71, 0.2)',
-            'rgba(103, 69, 64, 0.2)',
-            'rgba(49, 123, 84, 0.2)',
-            'rgba(121, 245, 123, 0.2)',
-            'rgba(142, 160, 45, 0.2)'
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(122, 14, 13, 1)',
+            'rgba(255, 54, 78, 1)',
+            'rgba(47, 165, 64, 1)',
+            'rgba(250, 72, 4, 1)',
+            'rgba(28, 159, 167, 1)',
+            'rgba(19, 222, 111, 1)',
+            'rgba(145, 209, 255, 1)',
+            'rgba(230, 150, 64, 1)',
+            'rgba(185, 20, 90, 1)',
+            'rgba(96, 123, 98, 1)',
+            'rgba(25, 23, 71, 1)',
+            'rgba(103, 69, 64, 1)',
+            'rgba(49, 123, 84, 1)',
+            'rgba(121, 245, 123, 1)',
+            'rgba(142, 160, 45, 1)'
             ],
             borderWidth: 1
         }]
     },
     options: {
+      title : {
+        display : true,
+        text : "Top 20 hashtags for english tweets",
+      },
+      legend: {
+        display: false
+    },
       responsive : false,
         scales: {
             yAxes: [{
@@ -139,17 +151,18 @@ var ctx = document.getElementById("myChart2").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["#ВСУ", " #ДНР", "#ПозорWADA", "#АнгелыВсердце", "#ЛНР", "#БоженуКОтвету", " #RT"],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '# of Tweets',
+            data: [40, 19, 10, 8, 7, 6, 5],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(122, 14, 13, 0.2)'
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
@@ -157,12 +170,20 @@ var myChart = new Chart(ctx, {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(255, 159, 64, 1)',
+                'rgba(122, 14, 13, 1)'
             ],
             borderWidth: 1
         }]
     },
     options: {
+      title : {
+        display : true,
+        text : "Top 6 hashtags for russian tweets",
+      },
+      legend: {
+        display: false
+    },
       responsive : false,
         scales: {
             yAxes: [{
@@ -240,30 +261,65 @@ var ctx = document.getElementById("myChart4").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["trump", "man", " polic", "like", "love", "peopl", "obama", "workout", "kill", "time", "day", "look", "know", "life","break", "need", "take", "-", "video", "never"],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '# of Tweets',
+            data: [ 105092, 70995, 57372, 52234, 48045, 47948, 42264, 41295, 40179, 39757, 36892, 36034, 34245, 33915, 33606, 32191, 32003, 31889, 30973, 30823],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(122, 14, 13, 0.2)',
+                'rgba(255, 54, 78, 0.2)',
+                'rgba(47, 165, 64, 0.2)',
+                'rgba(250, 72, 4, 0.2)',
+                'rgba(28, 159, 167, 0.2)',
+                'rgba(19, 222, 111, 0.2)',
+                'rgba(145, 209, 255, 0.2)',
+                'rgba(230, 150, 64, 0.2)',
+                'rgba(185, 20, 90, 0.2)',
+                'rgba(96, 123, 98, 0.2)',
+                'rgba(25, 23, 71, 0.2)',
+                'rgba(103, 69, 64, 0.2)',
+                'rgba(49, 123, 84, 0.2)',
+                'rgba(121, 245, 123, 0.2)',
+                'rgba(142, 160, 45, 0.2)'
             ],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(122, 14, 13, 1)',
+            'rgba(255, 54, 78, 1)',
+            'rgba(47, 165, 64, 1)',
+            'rgba(250, 72, 4, 1)',
+            'rgba(28, 159, 167, 1)',
+            'rgba(19, 222, 111, 1)',
+            'rgba(145, 209, 255, 1)',
+            'rgba(230, 150, 64, 1)',
+            'rgba(185, 20, 90, 1)',
+            'rgba(96, 123, 98, 1)',
+            'rgba(25, 23, 71, 1)',
+            'rgba(103, 69, 64, 1)',
+            'rgba(49, 123, 84, 1)',
+            'rgba(121, 245, 123, 1)',
+            'rgba(142, 160, 45, 1)'
             ],
             borderWidth: 1
         }]
     },
     options: {
+      title : {
+        display : true,
+        text : "Top 20 most common words used by english trolls",
+      },
+      legend: {
+        display: false
+    },
       responsive : false,
         scales: {
             yAxes: [{
@@ -283,30 +339,65 @@ var ctx = document.getElementById("myChart5").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["russian", "year", " russia", "peopl", "ukrainian", "ukrain", "day", "today", "die", "kill", "memori", "hero", "children", "support","world", "countri", "live", "american", "putin", "state"],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '# of Tweets',
+            data: [198, 185, 171, 165, 150, 137, 116, 113, 107, 105, 104, 104, 96,75,74,71,70,67,63,63],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(122, 14, 13, 0.2)',
+                'rgba(255, 54, 78, 0.2)',
+                'rgba(47, 165, 64, 0.2)',
+                'rgba(250, 72, 4, 0.2)',
+                'rgba(28, 159, 167, 0.2)',
+                'rgba(19, 222, 111, 0.2)',
+                'rgba(145, 209, 255, 0.2)',
+                'rgba(230, 150, 64, 0.2)',
+                'rgba(185, 20, 90, 0.2)',
+                'rgba(96, 123, 98, 0.2)',
+                'rgba(25, 23, 71, 0.2)',
+                'rgba(103, 69, 64, 0.2)',
+                'rgba(49, 123, 84, 0.2)',
+                'rgba(121, 245, 123, 0.2)',
+                'rgba(142, 160, 45, 0.2)'
             ],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(122, 14, 13, 1)',
+            'rgba(255, 54, 78, 1)',
+            'rgba(47, 165, 64, 1)',
+            'rgba(250, 72, 4, 1)',
+            'rgba(28, 159, 167, 1)',
+            'rgba(19, 222, 111, 1)',
+            'rgba(145, 209, 255, 1)',
+            'rgba(230, 150, 64, 1)',
+            'rgba(185, 20, 90, 1)',
+            'rgba(96, 123, 98, 1)',
+            'rgba(25, 23, 71, 1)',
+            'rgba(103, 69, 64, 1)',
+            'rgba(49, 123, 84, 1)',
+            'rgba(121, 245, 123, 1)',
+            'rgba(142, 160, 45, 1)'
             ],
             borderWidth: 1
         }]
     },
     options: {
+      title : {
+        display : true,
+        text : "Top 20 most common words used by russian trolls",
+      },
+      legend: {
+        display: false
+    },
       responsive : false,
         scales: {
             yAxes: [{
@@ -324,37 +415,71 @@ Nevertheless the attentive reader may notice the presence of the word <i> americ
 </br>
 Are those words very different from those of a typical english tweeter user ?  </br>
 Long story short : <b>kinda</b>.
-
 <canvas id="myChart6" width="600px" height="400px"></canvas>
 <script>
 var ctx = document.getElementById("myChart6").getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["good", "time", " day", "twitter", "rt", "today", "love", "today", "work", "got", "2", "back", "think", "lol","see", "really", "great", "would", "need"],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: '# of Tweets',
+            data: [45609,44233,34183,33820,33526,28218,27901,27859,27483,26924,25743,24748,24616,24520,24305,22579,22264,21132,20530,20450],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(122, 14, 13, 0.2)',
+                'rgba(255, 54, 78, 0.2)',
+                'rgba(47, 165, 64, 0.2)',
+                'rgba(250, 72, 4, 0.2)',
+                'rgba(28, 159, 167, 0.2)',
+                'rgba(19, 222, 111, 0.2)',
+                'rgba(145, 209, 255, 0.2)',
+                'rgba(230, 150, 64, 0.2)',
+                'rgba(185, 20, 90, 0.2)',
+                'rgba(96, 123, 98, 0.2)',
+                'rgba(25, 23, 71, 0.2)',
+                'rgba(103, 69, 64, 0.2)',
+                'rgba(49, 123, 84, 0.2)',
+                'rgba(121, 245, 123, 0.2)',
+                'rgba(142, 160, 45, 0.2)'
             ],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(122, 14, 13, 1)',
+            'rgba(255, 54, 78, 1)',
+            'rgba(47, 165, 64, 1)',
+            'rgba(250, 72, 4, 1)',
+            'rgba(28, 159, 167, 1)',
+            'rgba(19, 222, 111, 1)',
+            'rgba(145, 209, 255, 1)',
+            'rgba(230, 150, 64, 1)',
+            'rgba(185, 20, 90, 1)',
+            'rgba(96, 123, 98, 1)',
+            'rgba(25, 23, 71, 1)',
+            'rgba(103, 69, 64, 1)',
+            'rgba(49, 123, 84, 1)',
+            'rgba(121, 245, 123, 1)',
+            'rgba(142, 160, 45, 1)'
             ],
             borderWidth: 1
         }]
     },
     options: {
+      title : {
+        display : true,
+        text : "Top 20 most common words used by usual users",
+      },
+      legend: {
+        display: false
+    },
       responsive : false,
         scales: {
             yAxes: [{
@@ -396,17 +521,17 @@ var myChart = new Chart(ctx, {
     datasets: [
       {
         label: 'Positive',
-        data: [67.8, 50, 23],
+        data: [0.2160, 0.19, 0.171],
         backgroundColor: '#D6E9C6',
       },
       {
         label: 'Neutral',
-        data: [20.7, 20 , 22],
+        data: [0.45, 0.505 , 0.485],
         backgroundColor: '#FAEBCC',
       },
       {
         label: 'Negative',
-        data: [11.4, 45 ,12],
+        data: [0.333, 0.305 ,0.343],
         backgroundColor: '#EBCCD1',
       }
     ]
@@ -442,17 +567,17 @@ var myChart = new Chart(ctx, {
     datasets: [
       {
         label: 'Positive',
-        data: [67.8, 50],
+        data: [0.297, 0.18],
         backgroundColor: '#D6E9C6',
       },
       {
         label: 'Neutral',
-        data: [20.7, 20 ],
+        data: [0.417, 0.457],
         backgroundColor: '#FAEBCC',
       },
       {
         label: 'Negative',
-        data: [11.4, 45],
+        data: [0.286, 0.363],
         backgroundColor: '#EBCCD1',
       }
     ]
